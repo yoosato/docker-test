@@ -1,5 +1,6 @@
 FROM ruby
 MAINTAINER yoosato
+RUN apt-get update && apt-get install -y curl lsof net-tools
 
 RUN gem install bundler
 
@@ -14,4 +15,4 @@ RUN mkdir $app
 WORKDIR $app
 ADD . $app
 
-CMD ["bundle","exec","ruby","testapp.rb"]
+CMD ["bundle","exec","ruby","testapp.rb", "-o", "0.0.0.0"]
